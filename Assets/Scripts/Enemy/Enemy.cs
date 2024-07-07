@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector]
     public bool m_IsEnemyActive = false;
-    ObjectPool objectPool = null;
+    ObjectPool m_objectPool = null;
     Destructable m_destructable = null;
     SoundManager m_soundManager = null;
 
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
         m_agent.avoidancePriority = Random.Range(30, 70);
         m_currentState = EnemyState.Idle;
         m_currentWaitTime = Random.Range(m_minWaitTime, m_maxWaitTime);
-        objectPool = ServiceLocator.GetObjectPool();
+        m_objectPool = ServiceLocator.GetObjectPool();
         m_destructable = GetComponent<Destructable>();
         m_rigidbody = GetComponent<Rigidbody>();
         m_soundManager = ServiceLocator.GetSoundManager();
@@ -202,12 +202,12 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < m_firePoints.Length; i++)
         {
             m_soundManager.PlaySound(SoundTag.bullet);
-            Destructable muzzle = objectPool.SpawnFromPool(
+            Destructable muzzle = m_objectPool.SpawnFromPool(
                 PoolTag.Muzzle,
                 m_firePoints[i].transform.position,
                 Quaternion.identity
             );
-            Destructable aimBomb = objectPool.SpawnFromPool(
+            Destructable aimBomb = m_objectPool.SpawnFromPool(
                 PoolTag.EnemyBomb,
                 m_firePoints[i].transform.position,
                 Quaternion.identity
@@ -278,7 +278,7 @@ public class Enemy : MonoBehaviour
 
         for (int i = 0; i < m_explosionPoints.Length; i++)
         {
-            Destructable explosion = objectPool.SpawnFromPool(
+            Destructable explosion = m_objectPool.SpawnFromPool(
                 PoolTag.Explosion,
                 m_explosionPoints[i].position,
                 Quaternion.identity
@@ -288,7 +288,7 @@ public class Enemy : MonoBehaviour
         }
 
         yield return new WaitForSeconds(m_timeToDestroy);
-        Destructable wood = objectPool.SpawnFromPool(
+        Destructable wood = m_objectPool.SpawnFromPool(
             PoolTag.WoodHull,
             transform.position,
             transform.rotation
@@ -300,7 +300,7 @@ public class Enemy : MonoBehaviour
 
     void SpawnLootItem()
     {
-        Destructable loot = objectPool.SpawnFromPool(
+        Destructable loot = m_objectPool.SpawnFromPool(
             PoolTag.LootItem,
             transform.position,
             transform.rotation
