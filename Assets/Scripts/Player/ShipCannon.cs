@@ -67,10 +67,10 @@ public class ShipCannon : MonoBehaviour
     Camera m_mainCamera;
     Vector3 m_initialScale;
     bool m_isAiming = false;
-    ObjectPool objectPool = null;
+    ObjectPool m_objectPool = null;
     SoundManager m_soundManager = null;
 
-    float nextFireTime = 0.0f;
+    float m_nextFireTime = 0.0f;
     float m_aimDistance = 0;
 
     Vector3 dir;
@@ -80,23 +80,23 @@ public class ShipCannon : MonoBehaviour
         m_mainCamera = Camera.main;
         m_initialScale = m_aimIndicator.transform.localScale;
         m_aimIndicator.enabled = false;
-        objectPool = ServiceLocator.GetObjectPool();
+        m_objectPool = ServiceLocator.GetObjectPool();
         m_soundManager = ServiceLocator.GetSoundManager();
     }
 
     void Update()
     {
         HandleAiming();
-        if (Input.GetKeyDown(KeyCode.Z) && Time.time > nextFireTime)
+        if (Input.GetKeyDown(KeyCode.Z) && Time.time > m_nextFireTime)
         {
             FireCannons();
-            nextFireTime = Time.time + m_fireRate;
+            m_nextFireTime = Time.time + m_fireRate;
         }
 
-        if (Input.GetKeyDown(KeyCode.G) && m_isAiming && Time.time > nextFireTime)
+        if (Input.GetKeyDown(KeyCode.G) && m_isAiming && Time.time > m_nextFireTime)
         {
             ThrowRum();
-            nextFireTime = Time.time + m_rumFireRate;
+            m_nextFireTime = Time.time + m_rumFireRate;
         }
     }
 
@@ -295,12 +295,12 @@ public class ShipCannon : MonoBehaviour
         StartCoroutine(ShakeShip(m_shakeDuration, m_shakeMagnitude));
 
         m_soundManager.PlaySound(projectileSound);
-        Destructable muzzle = objectPool.SpawnFromPool(
+        Destructable muzzle = m_objectPool.SpawnFromPool(
             PoolTag.Muzzle,
             cannon.position,
             cannon.rotation
         );
-        Destructable bullet = objectPool.SpawnFromPool(
+        Destructable bullet = m_objectPool.SpawnFromPool(
             projectileToFire,
             cannon.position,
             cannon.rotation
