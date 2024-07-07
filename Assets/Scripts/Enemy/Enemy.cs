@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
     SoundManager m_soundManager = null;
 
     public EnemyInfo EnemyInfo { get; set; }
-    public EnemyInfoText m_EnemyInfoText { get; set; }
+    public EnemyInfoText EnemyInfoText { get; set; }
     public bool IsInfoDisplayed { get; set; }
     public Vector3 PlayerLastPosition { get; set; }
 

@@ -151,7 +151,7 @@ public class EnemyManager : MonoBehaviour
         m_enemiesControlled.Remove(enemy);
         m_enemiesKilled++;
 
-        var enemyInfo = enemy.m_EnemyInfoText;
+        var enemyInfo = enemy.EnemyInfoText;
         if (enemyInfo != null)
         {
             Destructable destructEnemyInfo = enemyInfo.GetComponent<Destructable>();
@@ -268,7 +268,7 @@ public class EnemyManager : MonoBehaviour
             enemyInfoText.m_RumAmount.text = enemy.EnemyInfo.m_RumAmount.ToString();
         }
 
-        enemy.m_EnemyInfoText = enemyInfoText;
+        enemy.EnemyInfoText = enemyInfoText;
         enemy.IsInfoDisplayed = true;
     }
 
