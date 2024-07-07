@@ -2869,7 +2869,7 @@ MonoBehaviour:
   m_maxActiveEnemiesText: {fileID: 1844428218}
   m_totalEnemiesText: {fileID: 1464841383}
   m_errorText: {fileID: 777231970}
-  m_errorDisplayTime: 0.5
+  m_errorDisplayTime: 0.8
 --- !u!1 &1086505044
 GameObject:
   m_ObjectHideFlags: 0
