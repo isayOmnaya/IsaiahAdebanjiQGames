@@ -9,7 +9,7 @@ public class PlayerInventory : MonoBehaviour
     PlayerInfoUi m_playerInfoUi = null;
 
     [SerializeField]
-    List<Item> m_Items = new List<Item>();
+    List<Item> m_items = new List<Item>();
 
     private void Start()
     {
@@ -18,14 +18,14 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddItem(ItemType itemType, int quantity)
     {
-        Item item = m_Items.Find(i => i.m_itemType == itemType);
+        Item item = m_items.Find(i => i.m_ItemType == itemType);
         if (item != null)
         {
-            item.m_quantity += quantity;
+            item.m_Quantity += quantity;
         }
         else
         {
-            m_Items.Add(new Item(itemType, quantity));
+            m_items.Add(new Item(itemType, quantity));
         }
         UpdateUI();
     }
@@ -41,13 +41,13 @@ public class PlayerInventory : MonoBehaviour
 
     public bool RemoveItem(ItemType itemType, int quantity)
     {
-        Item item = m_Items.Find(i => i.m_itemType == itemType);
-        if (item != null && item.m_quantity >= quantity)
+        Item item = m_items.Find(i => i.m_ItemType == itemType);
+        if (item != null && item.m_Quantity >= quantity)
         {
-            item.m_quantity -= quantity;
-            if (item.m_quantity <= 0)
+            item.m_Quantity -= quantity;
+            if (item.m_Quantity <= 0)
             {
-                m_Items.Remove(item);
+                m_items.Remove(item);
             }
             UpdateUI();
             return true;
@@ -58,8 +58,8 @@ public class PlayerInventory : MonoBehaviour
 
     public int GetItemQuantity(ItemType itemType)
     {
-        Item item = m_Items.Find(i => i.m_itemType == itemType);
-        return item != null ? item.m_quantity : 0;
+        Item item = m_items.Find(i => i.m_ItemType == itemType);
+        return item != null ? item.m_Quantity : 0;
     }
 }
 
@@ -73,12 +73,12 @@ public enum ItemType
 [System.Serializable]
 public class Item
 {
-    public ItemType m_itemType;
-    public int m_quantity;
+    public ItemType m_ItemType;
+    public int m_Quantity;
 
     public Item(ItemType itemType, int quantity)
     {
-        m_itemType = itemType;
-        m_quantity = quantity;
+        m_ItemType = itemType;
+        m_Quantity = quantity;
     }
 }

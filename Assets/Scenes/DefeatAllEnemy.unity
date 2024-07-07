@@ -24338,13 +24338,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerInfoUi: {fileID: 33657964}
-  m_Items:
-  - m_itemType: 0
-    m_quantity: 100
-  - m_itemType: 1
-    m_quantity: 80
-  - m_itemType: 2
-    m_quantity: 7
+  m_items:
+  - m_ItemType: 0
+    m_Quantity: 80
+  - m_ItemType: 1
+    m_Quantity: 90
+  - m_ItemType: 2
+    m_Quantity: 7
 --- !u!114 &1348840194
 MonoBehaviour:
   m_ObjectHideFlags: 0
