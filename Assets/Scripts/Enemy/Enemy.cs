@@ -10,7 +10,8 @@ public enum EnemyState
     Idle = 0,
     Moving,
     Attack,
-    Wait
+    Wait,
+    Death
 }
 
 public class Enemy : MonoBehaviour
@@ -115,9 +116,13 @@ public class Enemy : MonoBehaviour
             case EnemyState.Wait:
                 UpdateWaitState();
                 break;
+            case EnemyState.Death:
+                UpdateWaitState();
+                break;
         }
         m_TargetWaypoint.y = transform.position.y;
         UpdateHealthBar();
+        UpdateDeathState();
     }
 
     #region EnemyState
@@ -167,6 +172,14 @@ public class Enemy : MonoBehaviour
     {
         get { return m_currentState; }
         set { m_currentState = value; }
+    }
+
+    void UpdateDeathState()
+    {
+        if (m_enemyHealth <= 0)
+        {
+            m_currentState = EnemyState.Death;
+        }
     }
 
     IEnumerator AttackCoroutine()
