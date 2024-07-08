@@ -321,6 +321,7 @@ public class Enemy : MonoBehaviour
         EnemyInfo = enemyInfo;
         m_enemyMaxHealth = health;
         m_enemyNameText.text = name;
+        m_enemyHealth = m_enemyMaxHealth;
     }
 
     public void DeactivateName()
