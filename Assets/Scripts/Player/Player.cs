@@ -174,15 +174,18 @@ public class Player : MonoBehaviour
             m_rigidbody.angularVelocity = Vector3.zero;
         }
 
-        transform.Translate(Vector3.forward * m_currentSpeed * Time.deltaTime);
+        Vector3 forwardMovement = transform.forward * m_currentSpeed * Time.deltaTime;
+        m_rigidbody.MovePosition(m_rigidbody.position + forwardMovement);
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.up, -m_rotateSpeed * Time.deltaTime);
+            Quaternion deltaRotation = Quaternion.Euler(Vector3.up * -m_rotateSpeed * Time.deltaTime);
+            m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(Vector3.up, m_rotateSpeed * Time.deltaTime);
+            Quaternion deltaRotation = Quaternion.Euler(Vector3.up * m_rotateSpeed * Time.deltaTime);
+            m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
         }
     }
 
