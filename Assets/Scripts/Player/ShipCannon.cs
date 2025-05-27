@@ -87,7 +87,7 @@ public class ShipCannon : MonoBehaviour
     void Update()
     {
         HandleAiming();
-        if (Input.GetKeyDown(KeyCode.Z) && Time.time > m_nextFireTime)
+        if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0) && Time.time > m_nextFireTime)
         {
             FireCannons();
             m_nextFireTime = Time.time + m_fireRate;

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44542414, g: 0.49508744, b: 0.574033, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3639,7 +3638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Shoot : Press z\nAim : Hold Right Mouse\ncontrols : WASD\nEagleVision
+  m_text: "Shoot : Aim + Press Left Mouse\nAim : Hold Right Mouse\ncontrols : WASD\nEagleVision
     : V \nThrow Rum : Aim + G\nOpen Inventory : Hold I\n\nYou can Craft and Repair
     Ship in inventory\n\nScan Ship with Eagle vision"
   m_isRightToLeft: 0
